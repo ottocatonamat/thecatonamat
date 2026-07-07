@@ -1,7 +1,7 @@
 # Daily AI-in-Finance brief: collect -> synthesize (Claude) -> render -> commit.
 #
-# Runs at 08:00 UTC daily. Change the cron line to shift the hour
-# (e.g. "0 13 * * *" = 8am US Eastern during daylight time).
+# Runs at 08:00 Singapore time (SGT = UTC+8, no DST) = 00:00 UTC daily.
+# Change the cron line to shift the hour (GitHub cron is always UTC).
 #
 # NOTE: scheduled workflows only fire on the DEFAULT branch (master).
 # The synthesis step needs the ANTHROPIC_API_KEY repo secret; without it the
@@ -12,7 +12,7 @@ name: daily-brief
 
 on:
   schedule:
-    - cron: "0 8 * * *"
+    - cron: "0 0 * * *"
   workflow_dispatch: {}
 
 concurrency:

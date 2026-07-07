@@ -2,7 +2,7 @@
 
 Automated daily intelligence on artificial intelligence across **asset management** (spotlight sector) and **global finance** — banking, markets, fintech, payments, insurance, regulation, funding, and research.
 
-Every day at **08:00 UTC** the pipeline collects from ~20 free sources (regulators, arXiv, trade media, Google News topical sweeps), dedupes and filters, has Claude write a ~1,500–2,000-word decision-oriented brief with traceable citations, and publishes Markdown + HTML.
+Every day at **08:00 Singapore time (00:00 UTC)** the pipeline collects from ~20 free sources (regulators, arXiv, trade media, Google News topical sweeps), dedupes and filters, has Claude write a ~1,500–2,000-word decision-oriented brief with traceable citations, and publishes Markdown + HTML.
 
 ## Reading the brief (phone)
 
@@ -60,7 +60,7 @@ python pipeline/render.py
 
 ## Assumptions & limits
 
-- "8am" is interpreted as **08:00 UTC** — edit the cron to change (GitHub cron has no timezone support; expect ±15 min scheduling jitter).
+- The run fires at **08:00 Singapore time (SGT = UTC+8, no DST), i.e. cron `0 0 * * *` UTC** — GitHub cron has no timezone support; expect ±15 min scheduling jitter, so the brief typically lands between 8:00 and 8:20 AM SGT.
 - Google News RSS links route through news.google.com redirects; the cited publisher name is extracted from the feed metadata.
 - Sources are free feeds only — paywalled outlets (FT, Bloomberg) appear only via syndicated coverage.
 - The brief is decision support, not investment advice; verify time-sensitive claims against primary sources before acting.
