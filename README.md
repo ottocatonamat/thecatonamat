@@ -1,3 +1,14 @@
+# thecatonamat
+
+This repo currently hosts two independent features:
+
+1. **[AI in Finance — Daily Brief](#ai-in-finance--daily-brief)** — an automated daily
+   intelligence pipeline (Python + GitHub Actions).
+2. **[Daily Inspiration Feed](#daily-inspiration-feed)** — a curated, daily-rotating
+   inspiration web app (Vite + React + TypeScript).
+
+---
+
 # AI in Finance — Daily Brief
 
 Automated daily intelligence on artificial intelligence across **asset management** (spotlight sector) and **global finance** — banking, markets, fintech, payments, insurance, regulation, funding, and research.
@@ -64,3 +75,45 @@ python pipeline/render.py
 - Google News RSS links route through news.google.com redirects; the cited publisher name is extracted from the feed metadata.
 - Sources are free feeds only — paywalled outlets (FT, Bloomberg) appear only via syndicated coverage.
 - The brief is decision support, not investment advice; verify time-sensitive claims against primary sources before acting.
+
+---
+
+# Daily Inspiration Feed
+
+A hand-curated, daily-rotating stack of essays, books, interviews, poetry, philosophy,
+science, art, history, design, business and culture.
+
+## Stack
+
+- [Vite](https://vitejs.dev/) + [React](https://react.dev/) + TypeScript (strict)
+- Plain CSS with design tokens (light/dark via `prefers-color-scheme`), no CSS framework
+
+## Getting started
+
+```sh
+npm install
+npm run dev        # local dev server
+npm run typecheck  # tsc --noEmit
+npm run build      # typecheck + production build
+npm run preview    # serve the production build
+```
+
+## Structure
+
+- **Page**: `src/pages/DailyInspirationPage.tsx` — masthead, featured idea, "one idea to
+  carry today", a <15-minute creative action, the daily feed (8–12 items), and a
+  "save for the weekend" shelf. Includes loading (skeleton), error (retry) and empty states.
+- **Components**: `src/components/inspiration/`
+- **Data layer**: `src/data/inspiration/`
+  - `types.ts` — domain model (`FeedItem`, `DailyDigest`, …)
+  - `seed.ts` — curated seed content (real works, authors and links)
+  - `provider.ts` — `InspirationSource` interface + seed-backed implementation that
+    composes a deterministic digest per calendar day (seeded PRNG, category
+    round-robin so each day stays varied)
+
+### Swapping in a real backend
+
+The page depends only on the `InspirationSource` interface. To use a CMS, RSS
+pipeline, database or API, implement `getDailyDigest(date)` against that source and
+point `inspirationSource` in `src/data/inspiration/provider.ts` at the new
+implementation — no UI changes required.
