@@ -1,0 +1,173 @@
+# Feed registry for the AI-in-Finance daily brief.
+#
+# Fields per source:
+#   name:            human-readable label (also used as publisher fallback)
+#   url:             RSS/Atom feed URL (Google News RSS and the arXiv API are both Atom)
+#   category_hint:   default category if the synthesizer has nothing better
+#   region_hint:     default region
+#   assume_relevant: true  -> skip the AI+finance keyword filter (feed is already scoped)
+#                    false -> item must match AI keywords AND finance keywords (topics.yaml)
+#   weight:          1-3, higher = more likely to survive per-day item caps
+
+sources:
+  # ---------------------------------------------------------------- regulators
+  - name: SEC Press Releases
+    url: https://www.sec.gov/news/pressreleases.rss
+    category_hint: regulation
+    region_hint: US
+    assume_relevant: false
+    weight: 3
+
+  - name: Federal Reserve Press Releases
+    url: https://www.federalreserve.gov/feeds/press_all.xml
+    category_hint: regulation
+    region_hint: US
+    assume_relevant: false
+    weight: 3
+
+  - name: UK FCA News
+    url: https://www.fca.org.uk/news/rss.xml
+    category_hint: regulation
+    region_hint: UK
+    assume_relevant: false
+    weight: 3
+
+  - name: ECB Press Releases
+    url: https://www.ecb.europa.eu/rss/press.html
+    category_hint: regulation
+    region_hint: EU
+    assume_relevant: false
+    weight: 3
+
+  - name: Bank for International Settlements
+    url: https://www.bis.org/rss/home.xml
+    category_hint: regulation
+    region_hint: Global
+    assume_relevant: false
+    weight: 3
+
+  - name: ESMA News
+    url: https://www.esma.europa.eu/rss.xml
+    category_hint: regulation
+    region_hint: EU
+    assume_relevant: false
+    weight: 2
+
+  # ---------------------------------------------------------------- research
+  # arXiv API (Atom). Query: AI/LLM papers in quantitative finance + finance-flavored ML.
+  - name: arXiv q-fin x AI
+    url: "http://export.arxiv.org/api/query?search_query=cat:q-fin.*+AND+(abs:%22machine+learning%22+OR+abs:%22deep+learning%22+OR+abs:%22large+language+model%22+OR+abs:%22artificial+intelligence%22+OR+abs:LLM)&sortBy=submittedDate&sortOrder=descending&max_results=25"
+    category_hint: research
+    region_hint: Global
+    assume_relevant: true
+    weight: 2
+
+  - name: arXiv cs.AI/cs.LG x finance
+    url: "http://export.arxiv.org/api/query?search_query=(cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL)+AND+(abs:finance+OR+abs:financial+OR+abs:trading+OR+abs:%22asset+management%22+OR+abs:banking)&sortBy=submittedDate&sortOrder=descending&max_results=25"
+    category_hint: research
+    region_hint: Global
+    assume_relevant: true
+    weight: 2
+
+  # ---------------------------------------------------------------- trade media
+  - name: Finextra
+    url: https://www.finextra.com/rss/headlines.aspx
+    category_hint: fintech
+    region_hint: Global
+    assume_relevant: false
+    weight: 2
+
+  - name: TechCrunch Fintech
+    url: https://techcrunch.com/category/fintech/feed/
+    category_hint: fintech
+    region_hint: US
+    assume_relevant: false
+    weight: 2
+
+  - name: VentureBeat AI
+    url: https://venturebeat.com/category/ai/feed/
+    category_hint: technology
+    region_hint: US
+    assume_relevant: false
+    weight: 1
+
+  # ------------------------------------------------- Google News topical sweeps
+  # Google News RSS is the coverage workhorse: free, broad, supports `when:` recency.
+  # These are already scoped to AI+finance, so assume_relevant: true.
+
+  - name: GNews AI asset management
+    url: "https://news.google.com/rss/search?q=%22asset%20management%22%20(%22artificial%20intelligence%22%20OR%20%22AI%22)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: asset_management
+    region_hint: Global
+    assume_relevant: true
+    weight: 3
+
+  - name: GNews AI hedge funds & quant
+    url: "https://news.google.com/rss/search?q=(%22hedge%20fund%22%20OR%20quant)%20(%22artificial%20intelligence%22%20OR%20%22AI%22)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: asset_management
+    region_hint: Global
+    assume_relevant: true
+    weight: 3
+
+  - name: GNews AI wealth management
+    url: "https://news.google.com/rss/search?q=%22wealth%20management%22%20AI%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: asset_management
+    region_hint: Global
+    assume_relevant: true
+    weight: 3
+
+  - name: GNews AI banking
+    url: "https://news.google.com/rss/search?q=bank%20(%22generative%20AI%22%20OR%20%22artificial%20intelligence%22)%20when:1d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: banking
+    region_hint: Global
+    assume_relevant: true
+    weight: 2
+
+  - name: GNews AI trading & markets
+    url: "https://news.google.com/rss/search?q=(trading%20OR%20%22capital%20markets%22)%20%22AI%22%20when:1d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: markets
+    region_hint: Global
+    assume_relevant: true
+    weight: 2
+
+  - name: GNews AI insurance
+    url: "https://news.google.com/rss/search?q=insurance%20(%22artificial%20intelligence%22%20OR%20underwriting%20AI)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: insurance
+    region_hint: Global
+    assume_relevant: true
+    weight: 1
+
+  - name: GNews AI fintech funding
+    url: "https://news.google.com/rss/search?q=(fintech%20OR%20%22financial%20technology%22)%20AI%20(funding%20OR%20raises%20OR%20%22Series%20A%22%20OR%20%22Series%20B%22%20OR%20acquisition)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: funding
+    region_hint: Global
+    assume_relevant: true
+    weight: 3
+
+  - name: GNews AI finance regulation
+    url: "https://news.google.com/rss/search?q=(SEC%20OR%20regulator%20OR%20%22AI%20Act%22%20OR%20FCA%20OR%20ESMA)%20%22artificial%20intelligence%22%20(finance%20OR%20financial%20OR%20bank)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: regulation
+    region_hint: Global
+    assume_relevant: true
+    weight: 3
+
+  - name: GNews AI finance Asia & EM
+    url: "https://news.google.com/rss/search?q=AI%20(bank%20OR%20fintech%20OR%20%22asset%20management%22)%20(Singapore%20OR%20%22Hong%20Kong%22%20OR%20India%20OR%20Japan%20OR%20MAS%20OR%20HKMA)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: markets
+    region_hint: APAC
+    assume_relevant: true
+    weight: 2
+
+  - name: GNews major AM firms x AI
+    url: "https://news.google.com/rss/search?q=(BlackRock%20OR%20Vanguard%20OR%20%22State%20Street%22%20OR%20Fidelity%20OR%20Amundi%20OR%20Schroders%20OR%20%22Man%20Group%22%20OR%20Citadel%20OR%20%22Two%20Sigma%22)%20AI%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: asset_management
+    region_hint: Global
+    assume_relevant: true
+    weight: 3
+
+  - name: GNews major banks x AI
+    url: "https://news.google.com/rss/search?q=(JPMorgan%20OR%20%22Goldman%20Sachs%22%20OR%20%22Morgan%20Stanley%22%20OR%20Citi%20OR%20HSBC%20OR%20UBS%20OR%20%22Deutsche%20Bank%22%20OR%20%22BNP%20Paribas%22)%20(%22artificial%20intelligence%22%20OR%20%22generative%20AI%22)%20when:1d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: banking
+    region_hint: Global
+    assume_relevant: true
+    weight: 3

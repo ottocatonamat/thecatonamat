@@ -1,0 +1,99 @@
+# Relevance filtering + prioritization for the AI-in-Finance daily brief.
+#
+# For sources with assume_relevant: false, an item must match at least one
+# ai_keyword AND at least one finance_keyword (case-insensitive, in title+summary).
+# asset_management_keywords add a priority boost (the brief's spotlight sector).
+
+ai_keywords:
+  - artificial intelligence
+  - " ai "          # padded to avoid matching e.g. "air", "said"
+  - "ai-"
+  - genai
+  - generative ai
+  - machine learning
+  - deep learning
+  - large language model
+  - " llm"
+  - chatbot
+  - copilot
+  - agentic
+  - ai agent
+  - neural network
+  - openai
+  - anthropic
+  - claude
+  - gpt-
+  - chatgpt
+  - gemini
+  - foundation model
+
+finance_keywords:
+  - finance
+  - financial
+  - bank
+  - fintech
+  - asset management
+  - wealth management
+  - hedge fund
+  - private equity
+  - venture capital
+  - trading
+  - investment
+  - investor
+  - insurance
+  - insurer
+  - payments
+  - lending
+  - credit
+  - broker
+  - custodian
+  - fund manager
+  - capital markets
+  - securities
+  - regulator
+  - compliance
+  - underwriting
+  - portfolio
+  - etf
+  - treasury
+
+# Spotlight sector: items matching these get a priority boost in ranking.
+asset_management_keywords:
+  - asset management
+  - asset manager
+  - wealth management
+  - hedge fund
+  - fund manager
+  - portfolio manager
+  - quant
+  - etf
+  - mutual fund
+  - private markets
+  - institutional investor
+  - blackrock
+  - vanguard
+  - fidelity
+  - state street
+  - amundi
+  - schroders
+  - man group
+  - citadel
+  - two sigma
+  - bridgewater
+  - pimco
+  - invesco
+
+# Items whose title matches any of these are dropped (noise control).
+exclude_keywords:
+  - horoscope
+  - lottery
+  - "sports betting picks"
+  - "coupon"
+  - "best credit cards for"
+
+# Ranking caps applied before synthesis (keeps Claude input bounded).
+limits:
+  max_items_per_publisher: 4
+  max_items_total: 110
+  recency_days: 2          # collection window
+  seen_retention_days: 45  # how long dedup hashes are remembered
