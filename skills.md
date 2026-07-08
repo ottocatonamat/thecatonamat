@@ -9,5 +9,6 @@ Worked backward from consulting independence (2028–31) through the Europe move
 | Market narrative | Converts the credential into external demand | One-sentence market story said to a human, monthly; their response logged | Europe relationship moves (2–3 live, each with a real ask) | Not started |
 | Negotiation | Corrects the 40th–45th percentile default (D4); consulting pricing later | Floor set before first external conversation; first offer negotiated against it | D4 research → floor set → next negotiation | In progress — research commissioned 2026-07-07 |
 | Origination / selling | The 2028 business lives or dies on this | Asks made to people who owe me nothing, and their answers | European relationship asks are the practice reps; consulting pilot conversations from 2027 | Not started |
+| Vendor & commercial negotiation | Second credential now; a core consulting service later (vendor selection/implementation advisory is a product asset managers buy) | Contract terms I changed, with the cost they protected; a witness who saw it | PMS build story (stories/pms-build.md): scope-creep protection clause, combative-vendor turnaround — needs numbers + named witness | Evidence exists, unquantified |
 
 Rule: when a ledger move closes DONE, tag which capability it evidenced. A capability with no move attached in 60 days gets named in session as stalled.
