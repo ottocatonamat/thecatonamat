@@ -145,15 +145,18 @@ def main():
         ) as stream:
             message = stream.get_final_message()
     except anthropic.APIStatusError as exc:
-        log.error("Claude API error %s: %s", exc.status_code, exc.message)
-        sys.exit(1)
+        log.error("Claude API error %s: %s — skipping synthesis so collected "
+                  "items still commit. Generate the report with /daily-brief "
+                  "from Claude Code instead.", exc.status_code, exc.message)
+        return
     except anthropic.APIConnectionError:
-        log.error("network error reaching the Claude API")
-        sys.exit(1)
+        log.error("network error reaching the Claude API — skipping synthesis "
+                  "so collected items still commit")
+        return
 
     if message.stop_reason == "refusal":
         log.error("model refused the request — leaving no report for %s", date)
-        sys.exit(1)
+        return
 
     report = "".join(b.text for b in message.content if b.type == "text").strip()
     if message.stop_reason == "max_tokens":
