@@ -11,14 +11,14 @@
   "total_items_today": 497
  },
  "2026-07-10": {
-  "dup": 46,
-  "entries_seen": 743,
-  "feeds_failed": 0,
-  "feeds_ok": 21,
-  "irrelevant": 65,
-  "kept": 518,
-  "last_run": "2026-07-10T05:33:41.582280+00:00",
-  "stale": 114,
-  "total_items_today": 518
+  "dup": 436,
+  "entries_seen": 859,
+  "feeds_failed": 2,
+  "feeds_ok": 27,
+  "irrelevant": 75,
+  "kept": 144,
+  "last_run": "2026-07-10T11:15:49.043413+00:00",
+  "stale": 204,
+  "total_items_today": 662
  }
 }
