@@ -10,6 +10,47 @@
 #   weight:          1-3, higher = more likely to survive per-day item caps
 
 sources:
+  # ---------------------------------------------- alternative-data signals
+  # Non-traditional angles the news wires miss: what firms/agencies formally
+  # file, what practitioners discuss before it's news, and talent flows. All
+  # free, all standard RSS. Validated on a live run; dead feeds skip safely.
+
+  # US regulatory PRIMARY source — actual rulemaking/notices mentioning AI.
+  # Leads the trade press, and it's the document itself, not a summary.
+  - name: US Federal Register — AI documents
+    url: "https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D=%22artificial%20intelligence%22&per_page=40&order=newest"
+    category_hint: regulation
+    region_hint: US
+    assume_relevant: false
+    weight: 3
+
+  # Tech/quant community leading indicator — high-score AI stories; the
+  # AI+finance keyword filter keeps only the finance-relevant ones.
+  - name: Hacker News — AI (score-filtered)
+    url: "https://hnrss.org/newest?q=AI&points=50"
+    category_hint: technology
+    region_hint: Global
+    assume_relevant: false
+    weight: 1
+
+  # Quant practitioner sentiment — algotrading posts, filtered to those that
+  # actually touch AI/ML.
+  - name: Reddit r/algotrading
+    url: https://www.reddit.com/r/algotrading/.rss
+    category_hint: markets
+    region_hint: Global
+    assume_relevant: false
+    weight: 1
+
+  # Talent-flow alt-data: AI hiring, chief-AI-officer appointments, and AI
+  # layoffs across finance (via the proven Google News sweep pattern).
+  - name: GNews AI talent flows in finance
+    url: "https://news.google.com/rss/search?q=(bank%20OR%20%22asset%20management%22%20OR%20%22hedge%20fund%22%20OR%20fintech)%20(%22chief%20AI%20officer%22%20OR%20%22AI%20hiring%22%20OR%20%22AI%20talent%22%20OR%20%22head%20of%20AI%22%20OR%20%22AI%20team%22)%20when:3d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: asset_management
+    region_hint: Global
+    assume_relevant: true
+    weight: 2
+
   # ------------------------------------------------- commentary & analysis
   # Named finance/asset-management/econ voices who publish legitimate RSS
   # feeds (the ToS-safe alternative to scraping X). assume_relevant: false so
