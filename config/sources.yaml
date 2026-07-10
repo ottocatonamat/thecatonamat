@@ -206,6 +206,27 @@ sources:
     assume_relevant: true
     weight: 3
 
+  - name: GNews AI finance China (EN)
+    url: "https://news.google.com/rss/search?q=China%20(bank%20OR%20fintech%20OR%20%22asset%20management%22%20OR%20securities%20OR%20insurance%20OR%20PBOC%20OR%20CSRC)%20(%22artificial%20intelligence%22%20OR%20%22AI%22)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: markets
+    region_hint: China
+    assume_relevant: true
+    weight: 2
+
+  - name: GNews China big-tech AI x finance (EN)
+    url: "https://news.google.com/rss/search?q=(Ant%20Group%20OR%20Alibaba%20OR%20Tencent%20OR%20Baidu%20OR%20ICBC%20OR%20%22China%20Merchants%22%20OR%20WeBank)%20(AI%20OR%20fintech%20OR%20%22artificial%20intelligence%22)%20when:2d&hl=en-US&gl=US&ceid=US:en"
+    category_hint: fintech
+    region_hint: China
+    assume_relevant: true
+    weight: 2
+
+  - name: GNews AI finance China (ZH, primary)
+    url: "https://news.google.com/rss/search?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%20(%E9%93%B6%E8%A1%8C%20OR%20%E5%9F%BA%E9%87%91%20OR%20%E5%88%B8%E5%95%86%20OR%20%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%20OR%20%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86)%20when:2d&hl=zh-CN&gl=CN&ceid=CN:zh"
+    category_hint: markets
+    region_hint: China
+    assume_relevant: true
+    weight: 1
+
   - name: GNews AI finance Asia & EM
     url: "https://news.google.com/rss/search?q=AI%20(bank%20OR%20fintech%20OR%20%22asset%20management%22)%20(Singapore%20OR%20%22Hong%20Kong%22%20OR%20India%20OR%20Japan%20OR%20MAS%20OR%20HKMA)%20when:2d&hl=en-US&gl=US&ceid=US:en"
     category_hint: markets

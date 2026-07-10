@@ -13,6 +13,7 @@ Today is {{WEEKDAY}}, {{DATE}}. Below are {{ITEM_COUNT}} news items collected in
 - Facts are what sources state; your view is marked — use a bolded **So what:** or an em-dash aside, never disguised as fact.
 - Headline-only items you can't verify: either skip them or tag `(thin sourcing)`.
 - A section with nothing real today gets one honest line, not padding.
+- Some items (China/Korea feeds) have non-English titles/summaries. Translate them to English in your write-up; keep the citation and real URL unchanged.
 
 ## Output format (Markdown, 900–1,300 words — tight beats long)
 
