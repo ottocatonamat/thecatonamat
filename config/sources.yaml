@@ -78,13 +78,6 @@ sources:
     assume_relevant: false
     weight: 2
 
-  - name: Klement on Investing
-    url: https://klementoninvesting.substack.com/feed
-    category_hint: asset_management
-    region_hint: Global
-    assume_relevant: false
-    weight: 2
-
   - name: Musings on Markets (Aswath Damodaran)
     url: https://aswathdamodaran.blogspot.com/feeds/posts/default
     category_hint: markets
@@ -98,13 +91,6 @@ sources:
     region_hint: UK
     assume_relevant: false
     weight: 2
-
-  - name: a16z
-    url: https://a16z.com/feed/
-    category_hint: fintech
-    region_hint: US
-    assume_relevant: false
-    weight: 1
 
   - name: Noahpinion (Noah Smith)
     url: https://www.noahpinion.blog/feed
