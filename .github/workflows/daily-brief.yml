@@ -1,7 +1,9 @@
 # Daily AI-in-Finance brief: collect -> synthesize (Claude) -> render -> commit.
 #
-# Runs at 08:00 Singapore time (SGT = UTC+8, no DST) = 00:00 UTC daily.
-# Change the cron line to shift the hour (GitHub cron is always UTC).
+# Scheduled for ~08:00 Singapore time (SGT = UTC+8, no DST). The cron fires at
+# 23:47 UTC (= 07:47 SGT): midnight UTC is GitHub's most congested cron slot
+# and jobs there queued 60-100 min late, so we start early off the hour and
+# let the queue delay land the brief around 8am. The report is dated in SGT.
 #
 # NOTE: scheduled workflows only fire on the DEFAULT branch (master).
 # The synthesis step needs the ANTHROPIC_API_KEY repo secret; without it the
@@ -12,7 +14,7 @@ name: daily-brief
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "47 23 * * *"
   workflow_dispatch: {}
 
 concurrency:
@@ -37,18 +39,28 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # All steps share the SGT calendar date so the brief matches the
+      # reader's morning even though the runner clock is UTC.
+      - name: Set report date (SGT)
+        id: date
+        run: echo "sgt=$(TZ=Asia/Singapore date +%F)" >> "$GITHUB_OUTPUT"
+
       - name: Collect news items
-        run: python pipeline/collect.py
+        run: python pipeline/collect.py --date "${{ steps.date.outputs.sgt }}"
 
       - name: Synthesize daily brief with Claude
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python pipeline/synthesize.py
+        run: python pipeline/synthesize.py --date "${{ steps.date.outputs.sgt }}"
 
+      # Render and commit even if synthesis failed, so collected items are
+      # never lost — a red run then means "no brief today", not "no data".
       - name: Render HTML
+        if: ${{ !cancelled() }}
         run: python pipeline/render.py
 
       - name: Commit and push
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "ai-finance-brief bot"
           git config user.email "actions@users.noreply.github.com"
@@ -56,7 +68,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
           else
-            git commit -m "Daily brief $(date -u +%F)"
+            git commit -m "Daily brief ${{ steps.date.outputs.sgt }}"
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
