@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recipe Box</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🍳 Recipe Box</h1>
+    <p class="tagline">Paste any link — Instagram, TikTok, YouTube, a blog — and keep the recipe forever.</p>
+  </header>
+
+  <main>
+    <section class="capture card">
+      <form id="capture-form">
+        <div class="row">
+          <input id="url-input" type="url" placeholder="https://www.instagram.com/reel/…" autocomplete="off" />
+          <button id="capture-btn" type="submit">Capture</button>
+        </div>
+        <details id="caption-details">
+          <summary>Paste caption / recipe text (optional — needed for some Instagram posts)</summary>
+          <textarea id="text-input" rows="6" placeholder="Paste the post caption or the recipe text here…"></textarea>
+        </details>
+        <p id="capture-status" class="status" hidden></p>
+      </form>
+    </section>
+
+    <section class="browse">
+      <div class="row filters">
+        <input id="search-input" type="search" placeholder="Search recipes, ingredients, tags…" />
+        <div id="tag-bar" class="tag-bar"></div>
+      </div>
+      <div id="recipe-grid" class="grid"></div>
+      <p id="empty-state" class="empty" hidden>No recipes yet. Capture your first one above ↑</p>
+    </section>
+  </main>
+
+  <dialog id="recipe-dialog">
+    <div id="recipe-detail"></div>
+    <div class="dialog-actions">
+      <button id="delete-btn" class="danger">Delete</button>
+      <button id="close-btn">Close</button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
