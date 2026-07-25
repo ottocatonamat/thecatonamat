@@ -163,5 +163,16 @@
   "last_run": "2026-07-24T01:11:28.131556+00:00",
   "stale": 120,
   "total_items_today": 363
+ },
+ "2026-07-25": {
+  "dup": 200,
+  "entries_seen": 758,
+  "feeds_failed": 0,
+  "feeds_ok": 21,
+  "irrelevant": 69,
+  "kept": 362,
+  "last_run": "2026-07-25T01:12:00.542680+00:00",
+  "stale": 127,
+  "total_items_today": 362
  }
 }
