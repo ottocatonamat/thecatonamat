@@ -55,6 +55,7 @@ footer {{ margin-top:3rem; font-size:.8rem; color:var(--muted); border-top:1px s
 INDEX_BODY = """<h1>AI in Finance — Daily Briefs</h1>
 <p>Automated daily intelligence on artificial intelligence across asset management
 and global finance. Newest first.</p>
+<p><a href="inspiration/">☀ Daily Inspiration Feed</a> — curated essays, poems and ideas, rotated daily.</p>
 <ol class="index" reversed>
 {links}
 </ol>
