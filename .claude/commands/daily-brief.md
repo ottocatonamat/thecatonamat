@@ -4,7 +4,7 @@ description: Generate today's AI-in-Finance daily brief from collected items (ph
 
 Generate today's AI-in-Finance daily brief. Follow these steps exactly:
 
-1. Determine today's date in UTC (`date -u +%F`). If the user passed a date as an argument, use that instead.
+1. Determine today's date in Singapore time (`TZ=Asia/Singapore date +%F`). If the user passed a date as an argument, use that instead.
 2. If `data/items/<date>.jsonl` does not exist or is empty, run `python pipeline/collect.py --date <date>` first (install deps with `pip install -r requirements.txt` if needed).
 3. Read `prompts/daily_brief.md` — it is the report template and contains the full output-format and sourcing rules. Build the report exactly as that prompt specifies, using:
    - the items in `data/items/<date>.jsonl` (rank them the same way `pipeline/synthesize.py` does: asset-management spotlight items first, then feed weight, then recency; cap ~110 items, max 4 per publisher),

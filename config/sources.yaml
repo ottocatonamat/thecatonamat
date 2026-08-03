@@ -39,13 +39,6 @@ sources:
     assume_relevant: false
     weight: 3
 
-  - name: Bank for International Settlements
-    url: https://www.bis.org/rss/home.xml
-    category_hint: regulation
-    region_hint: Global
-    assume_relevant: false
-    weight: 3
-
   - name: ESMA News
     url: https://www.esma.europa.eu/rss.xml
     category_hint: regulation
