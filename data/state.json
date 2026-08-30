@@ -548,5 +548,16 @@
   "last_run": "2026-08-29T04:20:01.845224+00:00",
   "stale": 274,
   "total_items_today": 350
+ },
+ "2026-08-30": {
+  "dup": 260,
+  "entries_seen": 957,
+  "feeds_failed": 0,
+  "feeds_ok": 34,
+  "irrelevant": 72,
+  "kept": 300,
+  "last_run": "2026-08-30T01:42:32.790297+00:00",
+  "stale": 325,
+  "total_items_today": 300
  }
 }
