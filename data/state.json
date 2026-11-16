@@ -1,15 +1,4 @@
 {
- "2026-09-17": {
-  "dup": 254,
-  "entries_seen": 1091,
-  "feeds_failed": 1,
-  "feeds_ok": 33,
-  "irrelevant": 100,
-  "kept": 487,
-  "last_run": "2026-09-17T01:44:28.803890+00:00",
-  "stale": 250,
-  "total_items_today": 487
- },
  "2026-09-18": {
   "dup": 244,
   "entries_seen": 1109,
@@ -657,6 +646,17 @@
   "kept": 240,
   "last_run": "2026-11-15T03:07:26.066419+00:00",
   "stale": 270,
+  "total_items_today": 240
+ },
+ "2026-11-16": {
+  "dup": 72,
+  "entries_seen": 646,
+  "feeds_failed": 2,
+  "feeds_ok": 32,
+  "irrelevant": 52,
+  "kept": 240,
+  "last_run": "2026-11-16T03:11:08.023483+00:00",
+  "stale": 282,
   "total_items_today": 240
  }
 }
